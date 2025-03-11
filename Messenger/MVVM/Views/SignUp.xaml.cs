@@ -1,18 +1,8 @@
-﻿using Messenger.MVVM.Models;
-using System;
-using System.Collections.Generic;
+﻿using Messenger.MVVM.DataBase;
+using Messenger.MVVM.Models;
+using Messenger.Network;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Messenger.MVVM.Views
 {
@@ -28,13 +18,18 @@ namespace Messenger.MVVM.Views
         }
         private void SignUp_Click(object sender, RoutedEventArgs e)
         {
-            foreach (User user in Users)
+
+            
+            using (UsersContext db = new UsersContext())
             {
-                if (user.Login == LoginTextBox.Text && user.Password == PasswordTextBox.Password)
+                Client ServerClient = new Client(new User {Login = LoginTextBox.Text, Password = PasswordTextBox.Password });
+                var AuthUser = db.users.Where(u => u.Password == PasswordTextBox.Password.ToString() && u.Login == LoginTextBox.Text).FirstOrDefault();
+
+                if (AuthUser != null)
                 {
-                    this.Close();
                     MainWindow main = new MainWindow();
                     main.Show();
+                    this.Close();
                 }
                 else
                 {

@@ -1,4 +1,5 @@
 ﻿using Messenger.MVVM.Models;
+using Messenger.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace Messenger.MVVM.Views
         }
         private void RegistrButton_Click(object sender, RoutedEventArgs e)
         {
+
             UserManager.AddUser(new User { UserName = UserNameTextBox.Text, Login = LoginTextBox.Text, Password = PasswordTextBox.Password });
 
             MainWindow mainWindow = new MainWindow();
