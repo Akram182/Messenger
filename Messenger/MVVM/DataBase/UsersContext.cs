@@ -15,7 +15,7 @@ namespace Messenger.MVVM.DataBase
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=C:\\Users\\Студент\\Desktop\\Messenger-master\\LoacalUserDb.db");
+            optionsBuilder.UseSqlite("Data Source=C:\\Users\\User\\source\\repos\\Messenger\\LoacalUserDb.db");
         }
     }
 }
